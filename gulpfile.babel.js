@@ -79,6 +79,7 @@
             return b.bundle()
                 // log errors if they happen
                 .on('error', (e) => {
+                    console.log(e);
                     gulp.src('').pipe(notify({
                         title: "SYNTAX ERROR",
                         message: e.filename
