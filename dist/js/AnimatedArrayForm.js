@@ -5222,6 +5222,8 @@ var AnimatedArray = function (_React$Component) {
 	}, {
 		key: "animateSearch",
 		value: function animateSearch(array, number, lastChecked, start, end) {
+			var _this2 = this;
+
 			/*logical ops*/
 			var half = Math.floor((start + end) / 2);
 			var b = array[half].props.children;
@@ -5248,11 +5250,15 @@ var AnimatedArray = function (_React$Component) {
 			}
 
 			if (number > b && half < array.length - 1 && half != lastChecked) {
-				return this.animateSearch(array, number, half, half + 1, end);
+				return setTimeout(function () {
+					return _this2.animateSearch(array, number, half, half + 1, end);
+				}, 500);
 			}
 
 			if (number < b && half > 0 && half != lastChecked) {
-				return this.animateSearch(array, number, half, start, half - 1);
+				return setTimeout(function () {
+					return _this2.animateSearch(array, number, half, start, half - 1);
+				}, 500);
 			}
 
 			return false;
@@ -5260,7 +5266,7 @@ var AnimatedArray = function (_React$Component) {
 	}, {
 		key: "render",
 		value: function render() {
-			var _this2 = this;
+			var _this3 = this;
 
 			return _react2.default.createElement(
 				"div",
@@ -5282,12 +5288,12 @@ var AnimatedArray = function (_React$Component) {
 							"Array Size"
 						),
 						_react2.default.createElement("input", { type: "text", className: "array-sz-input pr", ref: function ref(input) {
-								return _this2.arraySize = input;
+								return _this3.arraySize = input;
 							} }),
 						_react2.default.createElement(
 							"button",
 							{ type: "submit", onClick: function onClick() {
-									return _this2.updateSize(parseInt(_this2.arraySize.value));
+									return _this3.updateSize(parseInt(_this3.arraySize.value));
 								} },
 							"set Size"
 						)
@@ -5301,12 +5307,12 @@ var AnimatedArray = function (_React$Component) {
 							"Find"
 						),
 						_react2.default.createElement("input", { type: "text", className: "array-search-input pr", ref: function ref(input) {
-								return _this2.searchValue = input;
+								return _this3.searchValue = input;
 							} }),
 						_react2.default.createElement(
 							"button",
 							{ type: "submit", onClick: function onClick() {
-									return console.log(_this2.animateSearch(_this2.state.array, parseInt(_this2.searchValue.value), 0, 0, _this2.props.arrayLength));
+									return console.log(_this3.animateSearch(_this3.state.array, parseInt(_this3.searchValue.value), 0, 0, _this3.props.arrayLength));
 								} },
 							"Search"
 						)

@@ -58,12 +58,12 @@ export default class AnimatedArray extends React.Component {
 
 	    if(number > b && half<array.length - 1 && half != lastChecked)
 	    {
-	        return this.animateSearch(array, number, half, half+1, end);
+	        return setTimeout(()=>this.animateSearch(array, number, half, half+1, end), 500);
 	    }
 
 	    if(number < b && half > 0 && half != lastChecked)
 	    {
-	        return this.animateSearch(array, number, half, start, half-1);
+	        return setTimeout(()=>this.animateSearch(array, number, half, start, half-1), 500);
 	    }
 
 	    return false;
