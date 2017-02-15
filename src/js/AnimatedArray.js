@@ -84,7 +84,7 @@ export default class AnimatedArray extends React.Component {
 					<div className="array-search-section">
 						<div className="pr">Find</div>
 						<input type="text" className="array-search-input pr" ref={ input => this.searchValue = input }/>
-						<button type="submit" onClick={ () => console.log(this.animateSearch(this.state.array, parseInt(this.searchValue.value), 0, 0, this.props.arrayLength)) }>Search</button>
+						<button type="submit" onClick={ () => console.log(this.animateSearch(this.state.array, parseInt(this.searchValue.value), 0, 0, this.state.array.length)) }>Search</button>
 					</div>
 				</div>
 			</div>

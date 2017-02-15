@@ -5312,7 +5312,7 @@ var AnimatedArray = function (_React$Component) {
 						_react2.default.createElement(
 							"button",
 							{ type: "submit", onClick: function onClick() {
-									return console.log(_this3.animateSearch(_this3.state.array, parseInt(_this3.searchValue.value), 0, 0, _this3.props.arrayLength));
+									return console.log(_this3.animateSearch(_this3.state.array, parseInt(_this3.searchValue.value), 0, 0, _this3.state.array.length));
 								} },
 							"Search"
 						)
