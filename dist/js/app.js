@@ -21892,7 +21892,7 @@ module.exports = require('./lib/React');
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");
@@ -21922,153 +21922,156 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AnimatedArray = function (_React$Component) {
-	(0, _inherits3.default)(AnimatedArray, _React$Component);
+    (0, _inherits3.default)(AnimatedArray, _React$Component);
 
-	function AnimatedArray(props) {
-		(0, _classCallCheck3.default)(this, AnimatedArray);
+    function AnimatedArray(props) {
+        (0, _classCallCheck3.default)(this, AnimatedArray);
 
-		var _this = (0, _possibleConstructorReturn3.default)(this, (AnimatedArray.__proto__ || (0, _getPrototypeOf2.default)(AnimatedArray)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (AnimatedArray.__proto__ || (0, _getPrototypeOf2.default)(AnimatedArray)).call(this, props));
 
-		_this.generateArray = _this.generateArray.bind(_this);
-		_this.animateSearch = _this.animateSearch.bind(_this);
+        _this.generateArray = _this.generateArray.bind(_this);
+        _this.animateSearch = _this.animateSearch.bind(_this);
 
-		_this.state = {
-			array: _this.generateArray(props.arrayLength)
-		};
-		return _this;
-	}
+        _this.state = {
+            array: _this.generateArray(props.arrayLength)
+        };
+        return _this;
+    }
 
-	(0, _createClass3.default)(AnimatedArray, [{
-		key: "generateArray",
-		value: function generateArray(size) {
-			var generatedArray = new Array();
-			for (var i = 0; i < size; ++i) {
-				generatedArray.push(_react2.default.createElement(
-					"div",
-					{ className: "element", key: i },
-					i
-				));
-			}
-			return generatedArray;
-		}
-	}, {
-		key: "updateSize",
-		value: function updateSize(newSize) {
-			console.log(newSize);
-			this.setState({ array: this.generateArray(newSize) });
-		}
-	}, {
-		key: "animateSearch",
-		value: function animateSearch(array, number, lastChecked, start, end) {
-			var _this2 = this;
+    (0, _createClass3.default)(AnimatedArray, [{
+        key: "generateArray",
+        value: function generateArray(size) {
+            var generatedArray = new Array();
 
-			/*logical ops*/
-			var half = Math.floor((start + end) / 2);
-			var b = array[half].props.children;
-			/*animation ops*/
-			var updatedArray = this.state.array;
-			var activeElement = _react2.default.createElement(
-				"div",
-				{ className: "element active", key: half },
-				half
-			);
-			updatedArray[half] = activeElement;
-			this.setState({ array: updatedArray });
+            for (var i = 0; i < size; ++i) {
+                generatedArray.push(_react2.default.createElement(
+                    "div",
+                    { className: "element", key: i },
+                    i
+                ));
+            }
 
-			if (number === b) {
-				var _updatedArray = this.state.array;
-				var _activeElement = _react2.default.createElement(
-					"div",
-					{ className: "element found", key: half },
-					half
-				);
-				_updatedArray[half] = _activeElement;
-				this.setState({ array: _updatedArray });
-				return true;
-			}
+            return generatedArray;
+        }
+    }, {
+        key: "updateSize",
+        value: function updateSize(newSize) {
+            this.setState({ array: this.generateArray(newSize) });
+        }
+    }, {
+        key: "animateSearch",
+        value: function animateSearch(array, number, lastChecked, start, end) {
+            var _this2 = this;
 
-			if (number > b && half < array.length - 1 && half != lastChecked) {
-				return setTimeout(function () {
-					return _this2.animateSearch(array, number, half, half + 1, end);
-				}, 500);
-			}
+            /*  logical ops    */
+            var half = Math.floor((start + end) / 2);
+            var b = array[half].props.children;
+            /*  animation ops   */
+            var updatedArray = this.state.array;
+            var activeElement = _react2.default.createElement(
+                "div",
+                { className: "element active", key: half },
+                half
+            );
 
-			if (number < b && half > 0 && half != lastChecked) {
-				return setTimeout(function () {
-					return _this2.animateSearch(array, number, half, start, half - 1);
-				}, 500);
-			}
+            updatedArray[half] = activeElement;
+            this.setState({ array: updatedArray });
 
-			return false;
-		}
-	}, {
-		key: "render",
-		value: function render() {
-			var _this3 = this;
+            if (number === b) {
+                var foundElement = _react2.default.createElement(
+                    "div",
+                    { className: "element found", key: half },
+                    half
+                );
 
-			return _react2.default.createElement(
-				"div",
-				null,
-				_react2.default.createElement(
-					"div",
-					{ className: "array-container" },
-					this.state.array
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "array-form" },
-					_react2.default.createElement(
-						"div",
-						{ className: "array-sz-section" },
-						_react2.default.createElement(
-							"div",
-							{ className: "pr" },
-							"Array Size"
-						),
-						_react2.default.createElement("input", { type: "text", className: "array-sz-input pr", ref: function ref(input) {
-								return _this3.arraySize = input;
-							} }),
-						_react2.default.createElement(
-							"button",
-							{ type: "submit", onClick: function onClick() {
-									return _this3.updateSize(parseInt(_this3.arraySize.value));
-								} },
-							"set Size"
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "array-search-section" },
-						_react2.default.createElement(
-							"div",
-							{ className: "pr" },
-							"Find"
-						),
-						_react2.default.createElement("input", { type: "text", className: "array-search-input pr", ref: function ref(input) {
-								return _this3.searchValue = input;
-							} }),
-						_react2.default.createElement(
-							"button",
-							{ type: "submit", onClick: function onClick() {
-									return console.log(_this3.animateSearch(_this3.state.array, parseInt(_this3.searchValue.value), 0, 0, _this3.state.array.length));
-								} },
-							"Search"
-						)
-					)
-				)
-			);
-		}
-	}]);
-	return AnimatedArray;
+                updatedArray[half] = foundElement;
+                this.setState({ array: updatedArray });
+
+                return true;
+            }
+
+            if (number > b && half < array.length - 1 && half !== lastChecked) {
+                return setTimeout(function () {
+                    return _this2.animateSearch(array, number, half, half + 1, end);
+                }, 500);
+            }
+
+            if (number < b && half > 0 && half !== lastChecked) {
+                return setTimeout(function () {
+                    return _this2.animateSearch(array, number, half, start, half - 1);
+                }, 500);
+            }
+
+            return false;
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this3 = this;
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "div",
+                    { className: "array-container" },
+                    this.state.array
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "array-form" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "array-sz-section" },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "pr" },
+                            "Array Size"
+                        ),
+                        _react2.default.createElement("input", { type: "text", className: "array-sz-input pr", ref: function ref(input) {
+                                _this3.arraySize = input;
+                            } }),
+                        _react2.default.createElement(
+                            "button",
+                            { type: "submit", onClick: function onClick() {
+                                    return _this3.updateSize(parseInt(_this3.arraySize.value, 10));
+                                } },
+                            "set Size"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "array-search-section" },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "pr" },
+                            "Find"
+                        ),
+                        _react2.default.createElement("input", { type: "text", className: "array-search-input pr", ref: function ref(input) {
+                                _this3.searchValue = input;
+                            } }),
+                        _react2.default.createElement(
+                            "button",
+                            { type: "submit", onClick: function onClick() {
+                                    _this3.animateSearch(_this3.state.array, parseInt(_this3.searchValue.value, 10), 0, 0, _this3.state.array.length);
+                                } },
+                            "Search"
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+    return AnimatedArray;
 }(_react2.default.Component);
 
 AnimatedArray.propTypes = {
-	arrayLength: _react2.default.PropTypes.number,
-	array: _react2.default.PropTypes.array,
-	updateSize: _react2.default.PropTypes.func
+    arrayLength: _react2.default.PropTypes.number,
+    array: _react2.default.PropTypes.array,
+    updateSize: _react2.default.PropTypes.func
 };
 AnimatedArray.defaultProps = {
-	arrayLength: 6
+    arrayLength: 6
 };
 exports.default = AnimatedArray;
 
